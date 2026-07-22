@@ -28,6 +28,20 @@ namespace atores
 
     void Ave::Atualizar()
     {
+        if (_HP == 0)
+        {
+            AnimAtual = AVE_DERROTADO;
+            FrameAtual = 0;
+            auto &animacao = sprite::ave.animacoes[AnimAtual];
+            auto x = animacao.frames[FrameAtual].x;
+            auto y = animacao.frames[FrameAtual].y;
+            auto w = animacao.frames[FrameAtual].w;
+            auto h = animacao.frames[FrameAtual].h;
+            Contexto::Video.RenderizarTextura(Contexto::Video.Texturas[Textura],
+                Pos.X, Pos.Y, x, y, w, h);
+            return;
+        }
+
         switch (_Estado)
         {
             case AVE_ESTADO_VOANDO: {
@@ -159,6 +173,8 @@ namespace atores
         else
         {
             _HP = 0;
+            AnimAtual = AVE_DERROTADO;
+            FrameAtual = 0;
         }
     }
 

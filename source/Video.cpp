@@ -147,6 +147,8 @@ namespace graficos
             
         if (ST_InputButtonPressed(KEY_START)) 
             sair = true;
+        if (ST_InputButtonPressed(KEY_A))
+            Contexto::Confirmar = true;
 #else   
         //Se o botão estiver sendo pressionado
         if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT))
@@ -236,6 +238,10 @@ namespace graficos
                         break;
                     case SDLK_ESCAPE:
                         sair = true;
+                        break;
+                    case SDLK_RETURN:
+                    case SDLK_SPACE:
+                        Contexto::Confirmar = true;
                         break;
                 }
             }
@@ -372,4 +378,3 @@ namespace graficos
 #endif
     }
 } 
-

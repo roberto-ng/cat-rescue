@@ -20,8 +20,10 @@ namespace atores
 
         public:
             bool Invencivel;
+            u8 HP;
 
             Bruxa();
+            void Reiniciar();
             void Atualizar();
             void LevarDano();
             void Animar();

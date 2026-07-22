@@ -46,7 +46,7 @@ namespace atores
                 _tubaroes.push_back(
                     Tubarao(
                         TUBARAO_TIPO_PEQUENO,
-                        Pos + Vetor2(Pos.X + Largura / 2, 0)
+                        Pos + Vetor2(Largura / 2, 0)
                     )
                 );
             }
@@ -55,14 +55,14 @@ namespace atores
                 _tubaroes.push_back(
                     Tubarao(
                         TUBARAO_TIPO_PEQUENO,
-                        Pos + Vetor2(Pos.X + Largura / 4, 0)
+                        Pos + Vetor2(Largura / 4, 0)
                     )
                 );
 
                 _tubaroes.push_back(
                     Tubarao(
                         TUBARAO_TIPO_PEQUENO,
-                        Pos + Vetor2(Pos.X + Largura / 4 * 3, 0)
+                        Pos + Vetor2(Largura / 4 * 3, 0)
                     )
                 );
             }

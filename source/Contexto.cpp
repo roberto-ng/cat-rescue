@@ -23,12 +23,58 @@ namespace jogo
     bool Contexto::Baixo    = false;
     bool Contexto::Esquerda = false;
     bool Contexto::Direita  = false;
+    bool Contexto::Confirmar = false;
+    EstadoJogo Contexto::Estado = JOGO_TITULO;
+
+    void Contexto::Reiniciar()
+    {
+        Aguas.clear();
+        Ilhas.clear();
+        Gatos.clear();
+        Balas.clear();
+        Bruxa.Reiniciar();
+        Ave = atores::Ave();
+        atores::Agua::Inicializar();
+        Video.frames = 0;
+        Estado = JOGO_JOGANDO;
+    }
 
     void Contexto::Atualizar()
     {
         Video.IniciarFrame();
         Video.frames++;
         Video.ChecarEntrada();
+
+        if (Estado == JOGO_TITULO)
+        {
+            auto titulo = CarregarFrase("CAT RESCUE", 125, 65, 0.5);
+            auto instrucao = CarregarFrase("PRESS A TO START", 105, 150, 0.25);
+            RenderizarFrase(titulo, 0.5);
+            RenderizarFrase(instrucao, 0.25);
+            if (Confirmar)
+            {
+                Confirmar = false;
+                Reiniciar();
+            }
+            Video.EncerrarFrame();
+            return;
+        }
+
+        if (Estado == JOGO_VITORIA || Estado == JOGO_FIM)
+        {
+            const char *mensagem = Estado == JOGO_VITORIA ? "YOU WIN" : "GAME OVER";
+            auto fim = CarregarFrase(mensagem, 140, 75, 0.5);
+            auto instrucao = CarregarFrase("PRESS A TO RESTART", 90, 150, 0.25);
+            RenderizarFrase(fim, 0.5);
+            RenderizarFrase(instrucao, 0.25);
+            if (Confirmar)
+            {
+                Confirmar = false;
+                Reiniciar();
+            }
+            Video.EncerrarFrame();
+            return;
+        }
 
         if (Video.frames % 200 == 0)
         {
@@ -70,9 +116,17 @@ namespace jogo
         });
 
         //Escreve a quantidade de gatos ajudando na tela
-        string qtd = std::to_string(Contexto::ContarGatosAjudando());
-        auto frase = CarregarFrase(qtd, Contexto::Video.Width - 50, 10, 0.5);
+        string qtd = "CATS: " + std::to_string(Contexto::ContarGatosAjudando()) + "/3";
+        auto frase = CarregarFrase(qtd, 8, 8, 0.5);
         RenderizarFrase(frase, 0.5);
+
+        string lives = "LIVES: " + std::to_string(Contexto::Bruxa.HP);
+        auto frase_lives = CarregarFrase(lives, 8, 22, 0.35);
+        RenderizarFrase(frase_lives, 0.35);
+
+        string hp = "BOSS: " + std::to_string(Contexto::Ave.HP());
+        auto frase_hp = CarregarFrase(hp, 255, 8, 0.35);
+        RenderizarFrase(frase_hp, 0.35);
 
         /**auto frase_link = CarregarFrase(
             "https://github.com/robertonazareth/cat-rescue",
@@ -111,6 +165,11 @@ namespace jogo
         {
             agua.Atualizar();
         }
+
+        if (Ave.HP() == 0)
+            Estado = JOGO_VITORIA;
+        else if (Bruxa.HP == 0)
+            Estado = JOGO_FIM;
 
         Video.EncerrarFrame();
     }

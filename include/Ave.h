@@ -23,6 +23,7 @@ namespace atores
             Ave();
             void Atualizar();
             void LevarDano(u16 dano);
+            u16 HP() const { return _HP; }
     };
 }
 

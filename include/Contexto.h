@@ -19,6 +19,14 @@ using std::function;
 
 namespace jogo
 {
+    enum EstadoJogo
+    {
+        JOGO_TITULO,
+        JOGO_JOGANDO,
+        JOGO_VITORIA,
+        JOGO_FIM
+    };
+
     class Contexto
     {
         public:
@@ -34,8 +42,11 @@ namespace jogo
             static bool Baixo;
             static bool Esquerda;
             static bool Direita;
+            static bool Confirmar;
+            static EstadoJogo Estado;
 
             static void Atualizar();
+            static void Reiniciar();
             static u8 ContarGatosAjudando();
             static u8 PosicaoGatosAjudando(atores::Gato *gatoProcurado);
 

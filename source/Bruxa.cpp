@@ -20,6 +20,17 @@ namespace atores
         Pos = jogo::Vetor2(300, 120);
         Invencivel = false;
         _FramesInvencibilidade = 0;
+        HP = 3;
+    }
+
+    void Bruxa::Reiniciar()
+    {
+        Pos = jogo::Vetor2(300, 120);
+        AnimAtual = BRUXA_VOAR;
+        FrameAtual = 0;
+        Invencivel = false;
+        _FramesInvencibilidade = 0;
+        HP = 3;
     }
 
     void Bruxa::Atualizar()
@@ -119,6 +130,10 @@ namespace atores
                     }
                 }
             }
+            else if (HP > 0)
+            {
+                --HP;
+            }
         }
     }
 
@@ -157,4 +172,3 @@ namespace atores
         }
     }
 }
-
