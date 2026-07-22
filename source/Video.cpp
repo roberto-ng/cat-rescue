@@ -285,6 +285,11 @@ namespace graficos
             return;
         }
 
+        // PNG assets use transparency for their backgrounds. SDL textures
+        // default to SDL_BLENDMODE_NONE, which makes transparent pixels show
+        // up as black rectangles around sprites and glyphs.
+        SDL_SetTextureBlendMode(tex, SDL_BLENDMODE_BLEND);
+
         Texturas.push_back(tex); 
 #endif
     }

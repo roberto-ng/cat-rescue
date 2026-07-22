@@ -21,7 +21,7 @@ namespace atores
             void Renderizar(f32 escala = 0.4);
     };
 
-    vector<Letra> CarregarFrase(string frase, f32 x, f32 y, s32 escala = 0.138);
+    vector<Letra> CarregarFrase(string frase, f32 x, f32 y, f32 escala = 0.138);
     void RenderizarFrase(vector<Letra> letras, f32 escala = 0.138);
 }
 

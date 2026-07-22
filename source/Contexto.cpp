@@ -47,7 +47,7 @@ namespace jogo
 
         if (Estado == JOGO_TITULO)
         {
-            auto titulo = CarregarFrase("CAT RESCUE", 125, 65, 0.5);
+            auto titulo = CarregarFrase("CAT RESCUE", 70, 65, 0.5);
             auto instrucao = CarregarFrase("PRESS A TO START", 105, 150, 0.25);
             RenderizarFrase(titulo, 0.5);
             RenderizarFrase(instrucao, 0.25);
@@ -117,16 +117,16 @@ namespace jogo
 
         //Escreve a quantidade de gatos ajudando na tela
         string qtd = "CATS: " + std::to_string(Contexto::ContarGatosAjudando()) + "/3";
-        auto frase = CarregarFrase(qtd, 8, 8, 0.5);
-        RenderizarFrase(frase, 0.5);
+        auto frase = CarregarFrase(qtd, 125, 5, 0.25);
+        RenderizarFrase(frase, 0.25);
 
         string lives = "LIVES: " + std::to_string(Contexto::Bruxa.HP);
-        auto frase_lives = CarregarFrase(lives, 8, 22, 0.35);
-        RenderizarFrase(frase_lives, 0.35);
+        auto frase_lives = CarregarFrase(lives, 125, 22, 0.25);
+        RenderizarFrase(frase_lives, 0.25);
 
-        string hp = "BOSS: " + std::to_string(Contexto::Ave.HP());
-        auto frase_hp = CarregarFrase(hp, 255, 8, 0.35);
-        RenderizarFrase(frase_hp, 0.35);
+        string hp = "HP: " + std::to_string(Contexto::Ave.HP());
+        auto frase_hp = CarregarFrase(hp, 320, 5, 0.25);
+        RenderizarFrase(frase_hp, 0.25);
 
         /**auto frase_link = CarregarFrase(
             "https://github.com/robertonazareth/cat-rescue",

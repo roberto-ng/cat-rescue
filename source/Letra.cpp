@@ -6,7 +6,7 @@ using namespace sprite;
 
 namespace atores
 {
-    vector<Letra> CarregarFrase(string frase, f32 x, f32 y, s32 escala)
+    vector<Letra> CarregarFrase(string frase, f32 x, f32 y, f32 escala)
     {
         vector<Letra> letras;
 
@@ -22,7 +22,7 @@ namespace atores
             else
             {
                 Letra anterior = letras[i - 1];
-                s32 novoX = anterior.Pos.X + anterior.Largura/7;
+                f32 novoX = anterior.Pos.X + anterior.Largura * escala + 1;
 
                 letras.push_back(Letra(novoX, y, frase[i]));
             }
