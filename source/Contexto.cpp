@@ -116,17 +116,13 @@ namespace jogo
         });
 
         //Escreve a quantidade de gatos ajudando na tela
-        string qtd = "CATS: " + std::to_string(Contexto::ContarGatosAjudando()) + "/3";
-        auto frase = CarregarFrase(qtd, 125, 5, 0.25);
-        RenderizarFrase(frase, 0.25);
+        string qtd = "CATS " + std::to_string(Contexto::ContarGatosAjudando()) + "/3";
+        auto frase = CarregarFrase(qtd, 120, 8, 0.2);
+        RenderizarFrase(frase, 0.2);
 
-        string lives = "LIVES: " + std::to_string(Contexto::Bruxa.HP);
-        auto frase_lives = CarregarFrase(lives, 125, 22, 0.25);
-        RenderizarFrase(frase_lives, 0.25);
-
-        string hp = "HP: " + std::to_string(Contexto::Ave.HP());
-        auto frase_hp = CarregarFrase(hp, 320, 5, 0.25);
-        RenderizarFrase(frase_hp, 0.25);
+        string lives = "LIVES " + std::to_string(Contexto::Bruxa.HP);
+        auto frase_lives = CarregarFrase(lives, 270, 8, 0.2);
+        RenderizarFrase(frase_lives, 0.2);
 
         /**auto frase_link = CarregarFrase(
             "https://github.com/robertonazareth/cat-rescue",
