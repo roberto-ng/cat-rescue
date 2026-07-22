@@ -240,6 +240,7 @@ namespace graficos
                         sair = true;
                         break;
                     case SDLK_RETURN:
+                    case SDLK_KP_ENTER:
                     case SDLK_SPACE:
                         Contexto::Confirmar = true;
                         break;

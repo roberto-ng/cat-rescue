@@ -23,6 +23,7 @@ namespace atores
 
     vector<Letra> CarregarFrase(string frase, f32 x, f32 y, f32 escala = 0.138);
     void RenderizarFrase(vector<Letra> letras, f32 escala = 0.138);
+    void CentralizarFrase(vector<Letra> &letras, f32 escala, f32 larguraTela);
 }
 
 #endif // LETRA_HEADER

@@ -47,8 +47,17 @@ namespace jogo
 
         if (Estado == JOGO_TITULO)
         {
-            auto titulo = CarregarFrase("CAT RESCUE", 70, 65, 0.5);
-            auto instrucao = CarregarFrase("PRESS A TO START", 105, 150, 0.25);
+            auto titulo = CarregarFrase("CAT RESCUE", 0, 65, 0.5);
+            auto instrucao = CarregarFrase(
+#ifdef _3DS
+                "PRESS A TO START",
+#else
+                "PRESS ENTER TO START",
+#endif
+                0, 150, 0.25
+            );
+            CentralizarFrase(titulo, 0.5, Video.Width);
+            CentralizarFrase(instrucao, 0.25, Video.Width);
             RenderizarFrase(titulo, 0.5);
             RenderizarFrase(instrucao, 0.25);
             if (Confirmar)
@@ -63,8 +72,17 @@ namespace jogo
         if (Estado == JOGO_VITORIA || Estado == JOGO_FIM)
         {
             const char *mensagem = Estado == JOGO_VITORIA ? "YOU WIN" : "GAME OVER";
-            auto fim = CarregarFrase(mensagem, 140, 75, 0.5);
-            auto instrucao = CarregarFrase("PRESS A TO RESTART", 90, 150, 0.25);
+            auto fim = CarregarFrase(mensagem, 0, 75, 0.5);
+            auto instrucao = CarregarFrase(
+#ifdef _3DS
+                "PRESS A TO RESTART",
+#else
+                "PRESS ENTER TO RESTART",
+#endif
+                0, 150, 0.25
+            );
+            CentralizarFrase(fim, 0.5, Video.Width);
+            CentralizarFrase(instrucao, 0.25, Video.Width);
             RenderizarFrase(fim, 0.5);
             RenderizarFrase(instrucao, 0.25);
             if (Confirmar)

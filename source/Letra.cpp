@@ -39,6 +39,19 @@ namespace atores
         }
     }
 
+    void CentralizarFrase(vector<Letra> &letras, f32 escala, f32 larguraTela)
+    {
+        if (letras.empty())
+            return;
+
+        const auto &ultima = letras.back();
+        const f32 largura = ultima.Pos.X + ultima.Largura * escala;
+        const f32 deslocamento = (larguraTela - largura) / 2.0;
+
+        for (auto &letra : letras)
+            letra.Pos.X += deslocamento;
+    }
+
     Letra::Letra(f32 x, f32 y, u8 letra)
     {
         Pos = Vetor2(x, y);
