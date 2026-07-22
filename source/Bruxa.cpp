@@ -44,35 +44,47 @@ namespace atores
             }
         }
 
+        Vetor2 direcao(0, 0);
+
         if (Contexto::Cima && !Contexto::Baixo)
         {
             AnimAtual = BRUXA_VOAR_CIMA;
             FrameAtual = 0;
-
-            if (Pos.Y > 0)
-                Pos.Y -= 2;
+            direcao.Y = -1;
         }
 
         if (Contexto::Baixo && !Contexto::Cima)
         {
             AnimAtual = BRUXA_VOAR_BAIXO;
             FrameAtual = 0;
-
-            if (Pos.Y + Altura + 16 < Contexto::Video.Height)
-                Pos.Y += 2;
+            direcao.Y = 1;
         }
 
         if (Contexto::Esquerda && !Contexto::Direita)
         {
-            if (Pos.X > 0)
-                Pos.X -= 2;
+            direcao.X = -1;
         }
 
         if (Contexto::Direita && !Contexto::Esquerda)
         {
-            if (Pos.X + Largura < Contexto::Video.Width)
-                Pos.X += 2;
-        }       
+            direcao.X = 1;
+        }
+
+        // Normalize digital movement so diagonal travel has the same speed
+        // as horizontal or vertical travel.
+        if (direcao != Vetor2(0, 0))
+        {
+            Pos += direcao.Unidade() * 2.0;
+
+            if (Pos.X < 0)
+                Pos.X = 0;
+            if (Pos.X + Largura > Contexto::Video.Width)
+                Pos.X = Contexto::Video.Width - Largura;
+            if (Pos.Y < 0)
+                Pos.Y = 0;
+            if (Pos.Y + Altura > Contexto::Video.Height - 16)
+                Pos.Y = Contexto::Video.Height - 16 - Altura;
+        }
 
         if ((Contexto::Video.CliqueAnterior.X != -30) &&
             (Contexto::Video.CliqueAtual.X != -30))
